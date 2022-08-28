@@ -12,6 +12,7 @@ public class AimDisplay : MonoBehaviour
     [SerializeField] private Image _bigTarget;
     [SerializeField] private Image _mask;
     [SerializeField] private Image _smallTarget;
+    [SerializeField] private CameraMover _cameraMover;
 
     private readonly float _maskAppearanceEndValue = 0.7f;
     private readonly float _fadingEndValue = 0f;
@@ -19,14 +20,22 @@ public class AimDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput.DownClicked += OnDownClicked;
-        _playerInput.UpClicked += OnUpClicked;
+        _cameraMover.EndWaypointReached += OnEndWaypointReached;
+        _smallTarget.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
+        _cameraMover.EndWaypointReached -= OnEndWaypointReached;
         _playerInput.DownClicked -= OnDownClicked;
         _playerInput.UpClicked -= OnUpClicked;
+    }
+
+    private void OnEndWaypointReached()
+    {
+        _playerInput.DownClicked += OnDownClicked;
+        _playerInput.UpClicked += OnUpClicked;
+        _smallTarget.gameObject.SetActive(true);
     }
 
     private void OnDownClicked()
