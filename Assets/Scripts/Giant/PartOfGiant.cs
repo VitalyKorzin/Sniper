@@ -1,10 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PartOfGiant : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] private List<Bone> _bones;
+
+    private Rigidbody _rigidbody;
+
+    private void Awake()
     {
-        if (collision.gameObject.TryGetComponent(out Bullet _))
-            Debug.Log(true);
+        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.isKinematic = true;
+    }
+
+    public void TearOff()
+    {
+        foreach (var bone in _bones)
+            bone.BindWithTargetParent();
+
+        transform.parent = null;
+        _rigidbody.isKinematic = false;
     }
 }
