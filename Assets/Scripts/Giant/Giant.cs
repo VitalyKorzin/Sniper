@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Giant : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class Giant : MonoBehaviour
     public bool Dying => _health == 1;
     public bool Died => _health == 0;
 
+    public event UnityAction TookDamage;
+
     public void ApplyOneHit()
     {
         _health--;
+        TookDamage?.Invoke();
 
         if (Dying)
             TearOffAllBalls();
