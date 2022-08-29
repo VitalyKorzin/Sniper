@@ -14,7 +14,6 @@ public class SniperRifle : MonoBehaviour
     [SerializeField] private Bullet _template;
     [SerializeField] private Transform _shotPoint;
     [SerializeField] private MeshRenderer[] _meshRenderers;
-    [SerializeField] private CameraSight _cameraSight;
     [SerializeField] private CameraMover _cameraMover;
 
     private Animator _animator;
@@ -78,7 +77,6 @@ public class SniperRifle : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 targetPosition = _cameraSight.GetTargetPosition();
-        Instantiate(_template, _shotPoint.position, _shotPoint.rotation).Initialize(targetPosition);
+        Instantiate(_template, _shotPoint.position, _shotPoint.rotation);
     }
 }

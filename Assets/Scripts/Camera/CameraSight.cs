@@ -28,24 +28,6 @@ public class CameraSight : MonoBehaviour
         _playerInput.UpClicked -= OnUpClicked;
     }
 
-    public Vector3 GetTargetPosition()
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit raycastHit;
-        Vector3 targetPosition = Vector3.zero;
-
-        if (Physics.Raycast(ray, out raycastHit, 100f))
-        {
-            targetPosition = raycastHit.point;
-        }
-        else
-        {
-            targetPosition = ray.GetPoint(100f);
-        }
-
-        return targetPosition;
-    }
-
     private void OnEndWaypointReached()
     {
         _playerInput.DownClicked += OnDownClicked;

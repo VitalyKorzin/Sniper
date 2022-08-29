@@ -6,13 +6,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     [SerializeField] private BlastWave _tempalte;
 
-    private Vector3 _targetPosition;
-
-    public void Initialize(Vector3 targetPosition)
-    {
-        _targetPosition = targetPosition;
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out DamageablePartOfGiant damageablePartOfGiant))
@@ -20,12 +13,10 @@ public class Bullet : MonoBehaviour
             Instantiate(_tempalte, collision.GetContact(0).point, Quaternion.identity, damageablePartOfGiant.transform).Initialize(damageablePartOfGiant);
             Destroy(gameObject);
         }
-
-        
     }
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
+        transform.Translate(_movementSpeed * Time.deltaTime * Vector3.up);
     }
 }
