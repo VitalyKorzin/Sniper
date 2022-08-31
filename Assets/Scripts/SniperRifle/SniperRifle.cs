@@ -15,6 +15,9 @@ public class SniperRifle : MonoBehaviour
     [SerializeField] private Transform _shotPoint;
     [SerializeField] private MeshRenderer[] _meshRenderers;
     [SerializeField] private CameraMover _cameraMover;
+    [SerializeField] private Transform _muzzle;
+    [SerializeField] private ParticleSystem _blast;
+    [SerializeField] private ParticleSystem _warp;
 
     private Animator _animator;
 
@@ -78,5 +81,7 @@ public class SniperRifle : MonoBehaviour
     private void Shoot()
     {
         Instantiate(_template, _shotPoint.position, _shotPoint.rotation);
+        Instantiate(_blast, _muzzle.position, Quaternion.identity);
+        _warp.Play();
     }
 }

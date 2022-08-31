@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 70
   _tempalte: {fileID: 5512886619782419916, guid: ac9985b04d2d9fe45aa674f5c0efaf0f, type: 3}
+  _splash: {fileID: 7944429357976123436, guid: 18c626705937c5b4b9f54532f42753db, type: 3}
 --- !u!54 &-2388651117323474606
 Rigidbody:
   m_ObjectHideFlags: 0

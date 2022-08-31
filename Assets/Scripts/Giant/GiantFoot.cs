@@ -3,11 +3,16 @@ using UnityEngine.Events;
 
 public class GiantFoot : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _slamWave;
+
     public event UnityAction TouchedGround;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.TryGetComponent(out Ground _))
+        if (other.TryGetComponent(out Ground _))
+        {
             TouchedGround?.Invoke();
+            Instantiate(_slamWave, other.ClosestPoint(transform.position), Quaternion.Euler(-90f, 0f, 0f));
+        }
     }
 }
