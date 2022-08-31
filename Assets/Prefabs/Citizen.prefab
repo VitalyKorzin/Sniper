@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pulsatingDuration: 0.4
-  _targetScale: 0.012
+  _targetScale: 0.008
   _loops: -1
   _loopType: 1
   _value: {fileID: 1416872686745871545}
