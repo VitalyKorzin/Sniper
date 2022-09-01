@@ -6,7 +6,7 @@ public class Giant : MonoBehaviour
     [Min(0)]
     [SerializeField] private int _health;
     [SerializeField] private PartOfGiant[] _parts;
-    [SerializeField] private DamageablePartOfGiant[] _controllers;
+    [SerializeField] private DamageablePartOfGiant[] _damageableParts;
     [SerializeField] private PartOfGiantRenderer[] _renderers;
 
     public bool Dying => _health == 1;
@@ -28,8 +28,8 @@ public class Giant : MonoBehaviour
 
     private void TearOffAllBalls()
     {
-        foreach (var controller in _controllers)
-            controller.TearOffAllBalls();
+        foreach (var damageablePart in _damageableParts)
+            damageablePart.TearOffAllBalls();
     }
 
     private void Die()
